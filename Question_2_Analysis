@@ -1,0 +1,53 @@
+Triplets
+
+Algorithm:
+
+--------------------------------------------------------------------
+
+/*Function input array and target sum
+    Objective to return ordered triplets 
+    Example: [[1,2,7],[2,3,5],[3,3,4]]
+    Ascending order in row and column */
+// Two pointer approach
+
+    vector<int> result;
+    int n = array.size();
+    sort(array.begin(), array.end());
+
+    for(int i=0; i<n-2; i++){
+
+        int j=i+1;
+        int k=n-1;
+
+        while(j<k){
+
+            int current_sum = array[i];
+            current_sum += array[j];
+            current_sum += array[k];
+
+            if(current_sum == Target_Sum){
+                result.push_back({array[i], array[j], array[k]});
+                j++;
+                k--;
+            }
+            else if(current_sum < Target_Sum){
+                j++;
+            }
+            else{
+                k--;
+            }
+        }
+    }
+    return result;
+
+--------------------------------------------------------------------
+
+Time Complexity:
+
+1. Brute Force - O(N^3)
+2. Iterating over all the elements and using twoSum problem on other 
+remaining elements - O(N.N) = O(N^2) + Space Complexity of O(N)
+3. Two pointer approach - O(NlogN + N.N) = O(N^2) 
+    Constant Space Complexity since no additional data structure is 
+    used
+
