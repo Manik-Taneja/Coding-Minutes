@@ -1,0 +1,38 @@
+Two Sum Problem
+
+Algorithm: 
+
+----------------------------------------------------------------
+//Function input array and target sum
+
+    vector<int> result;
+    unordered_set<int> check;
+
+    for(int i=0; i<array.size(); i++){
+
+        int difference = Target_Sum - array[i];
+
+        if(check.find(difference) != check.end()){          
+            result.push_back({array[i], difference});
+            return result;
+        }
+        check.insert(array[i]);
+    } 
+    return {};
+
+
+----------------------------------------------------------------
+
+Time Complexity - 
+
+1. Brute force - Nested Loop - O(N^2)
+2. Sorting + Binary Search - O(NlogN + NlogN)
+                            = O(NlogN)
+3. Unordered_set - O(N)
+
+Note: Add the elements in the unordered set once that element is
+checked not before because duplicate elements might be picked up 
+when checking for an element in the set
+
+Example: [2,2] might be picked up even though there is not another 2
+in the set
