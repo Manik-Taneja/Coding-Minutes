@@ -1,0 +1,49 @@
+Peaks
+
+Algorithm:
+
+-----------------------------------------------------------------
+
+/* Function input array of integers, objective is to find the largest
+peak, for largest peak calculate the numbers involved in creating that 
+peak */
+
+// Function input array of integers
+
+    int largest = 0;
+
+    for(int i=1; i<n-1; ){
+
+        //check if array[i] is the peak
+
+        if(array[i] > array[i-1] && array[i] > array[i+1]){
+            int count = 1;
+            int j = i;
+
+            // count the elements in the ascending part of the peak 
+            while( j>=1 && array[j] > array[j-1] ){
+                j--;
+                count++;
+            }
+
+            //count the elements in the descending part of the peak
+            while( i<n-1 && array[i] > array[i+1]){
+                i++;
+                count++;
+            }
+            largest = max(largest,count);
+        }
+
+        else{
+            i++;
+        }
+    }
+
+    return largest;
+
+------------------------------------------------------------------------
+
+Time Complexity:
+
+Since we traverse all the elements using a single loop the time complexity is
+O(N)
